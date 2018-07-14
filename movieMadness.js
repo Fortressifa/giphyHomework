@@ -1,16 +1,16 @@
 $(document).ready(function() {
-
-  var movies = [
+// This is initial array of movie buttons
+  const movies = [
     "Indiana Jones", "The Matrix", "Star Wars", "Ghostbusters", "Back To The Future", "Jaws",
     "ET", "When Harry Met Sally", "Ferris Bueller", "Office Space", "This Is Spinal Tap"
   ];
 
-  // function to make buttons and add to page
+  // button for the initial movies
   function populateButtons(arrayToUse, classToAdd, areaToAddTo) {
     $(areaToAddTo).empty();
 
-    for (var i = 0; i < arrayToUse.length; i++) {
-      var a = $("<button>");
+    for (let i = 0; i < arrayToUse.length; i++) {
+      const a = $("<button>");
       a.addClass(classToAdd);
       a.attr("data-type", arrayToUse[i]);
       a.text(arrayToUse[i]);
@@ -24,27 +24,28 @@ $(document).ready(function() {
     $(".movie-button").removeClass("active");
     $(this).addClass("active");
 
-    var type = $(this).attr("data-type");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=d7Pf3ibuLWucX4bRsYocNzWRSxO502eR&limit=10";
+    // query to the giphy api with my key
+    const type = $(this).attr("data-type");
+    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=d7Pf3ibuLWucX4bRsYocNzWRSxO502eR&limit=10";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     })
       .then(function(response) {
-        var results = response.data;
+        const results = response.data;
 
-        for (var i = 0; i < results.length; i++) {
-          var movieDiv = $("<div class=\"movie-item\">");
+        for (let i = 0; i < results.length; i++) {
+          const movieDiv = $("<div class=\"movie-item\">");
 
-          var rating = results[i].rating;
+          const rating = results[i].rating;
 
-          var p = $("<p>").text("Rating: " + rating);
+          const p = $("<p>").text("Rating: " + rating);
 
-          var animated = results[i].images.fixed_height.url;
-          var still = results[i].images.fixed_height_still.url;
+          const animated = results[i].images.fixed_height.url;
+          const still = results[i].images.fixed_height_still.url;
 
-          var movieImage = $("<img>");
+          const movieImage = $("<img>");
           movieImage.attr("src", still);
           movieImage.attr("data-still", still);
           movieImage.attr("data-animate", animated);
@@ -61,7 +62,7 @@ $(document).ready(function() {
 
   $(document).on("click", ".movie-image", function() {
 
-    var state = $(this).attr("data-state");
+    const state = $(this).attr("data-state");
 
     if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
@@ -75,7 +76,7 @@ $(document).ready(function() {
 
   $("#add-movie").on("click", function(event) {
     event.preventDefault();
-    var newMovie = $("input").eq(0).val();
+    const newMovie = $("input").eq(0).val();
 
     if (newMovie.length > 2) {
       movies.push(newMovie);
