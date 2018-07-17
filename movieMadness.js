@@ -1,4 +1,4 @@
-$(document).ready(function() {
+// $(document).ready(function() {
 // This is initial array of movie buttons
   const movies = [
     "Indiana Jones", "The Matrix", "Star Wars", "Ghostbusters", "Back To The Future", "Jaws",
@@ -87,4 +87,4 @@ $(document).ready(function() {
   });
 
   populateButtons(movies, "movie-button", "#movie-buttons");
-});
+// });
