@@ -26,7 +26,7 @@
 
     // query to the giphy api with my key
     const type = $(this).attr("data-type");
-    const queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=d7Pf3ibuLWucX4bRsYocNzWRSxO502eR&limit=10";
+    const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=d7Pf3ibuLWucX4bRsYocNzWRSxO502eR&limit=10";
 
     $.ajax({
       url: queryURL,
